@@ -24,14 +24,29 @@ def profile():
         'name': 'Sarah',
         'age': 22,
         'course': 'Web Development',
-        'is_enrolled': True
+        'is_enrolled': True,
+        'email-id' : 'sarah123@gmail.com',
+        'city' : 'New York'
     }
     return render_template('profile.html',  # Pass multiple variables to template
                            name=user_data['name'],
                            age=user_data['age'],
                            course=user_data['course'],
-                           is_enrolled=user_data['is_enrolled'])
+                           is_enrolled=user_data['is_enrolled'],
+                           email_id=user_data['email-id'],
+                           city=user_data['city']
+)
 
+@app.route('/grades')
+def grades():
+    subject_grades = {
+        'Mathematics': 'A',
+        'Physics': 'B+',
+        'Chemistry': 'O',
+        'English': 'B',
+        'History': 'A'
+    }
+    return render_template('grades.html', grades=subject_grades)  # Pass dictionary to template         
 
 @app.route('/skills')
 def skills():

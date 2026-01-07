@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shubham Mart - Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eaeded;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        .header {
+            background: #131921;
+            color: white;
+            padding: 15px 30px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .header span {
+            color: #f3a847;
+        }
+
+        /* Product container */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            display: flex;
+            gap: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        /* Image placeholder */
+        .image-box {
+            width: 40%;
+            background: #f7f7f7;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #777;
+        }
+
+        /* Product details */
+        .details {
+            width: 60%;
+        }
+
+        .details h1 {
+            margin-top: 0;
+            font-size: 28px;
+            color: #0f1111;
+        }
+
+        .price {
+            font-size: 26px;
+            color: #b12704;
+            margin: 15px 0;
+        }
+
+        .info {
+            color: #565959;
+            margin-bottom: 20px;
+        }
+
+        .buy-btn {
+            background: #ffd814;
+            border: 1px solid #fcd200;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .buy-btn:hover {
+            background: #f7ca00;
+        }
+
+        .back {
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+            color: #007185;
+            font-weight: bold;
+        }
+
+        /* Error box */
+        .error-box {
+            max-width: 500px;
+            margin: 80px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .error-box h1 {
+            color: #b12704;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    Shubham <span>Mart</span> 🛒
+</div>
+
+{% if product %}
+<div class="container">
+
+    <div class="image-box">
+        Product Image
+    </div>
+
+    <div class="details">
+        <h1>{{ product.name }}</h1>
+        <div class="price">₹{{ product.price }}</div>
+        <div class="info">
+            <p><strong>Product ID:</strong> {{ product_id }}</p>
+            <p>✔️ 7 Days Replacement</p>
+            <p>✔️ Free Delivery</p>
+        </div>
+
+        <button class="buy-btn">Add to Cart</button>
+
+        <br>
+        <a class="back" href="/">← Back to Home</a>
+    </div>
+
+</div>
+
+{% else %}
+
+<div class="error-box">
+    <h1>Product Not Found ❌</h1>
+    <p>No product exists with ID {{ product_id }}</p>
+    <a class="back" href="/">← Back to Home</a>
+</div>
+
+{% endif %}
+
+</body>
+</html>

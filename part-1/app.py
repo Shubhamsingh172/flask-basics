@@ -16,9 +16,17 @@ app = Flask(__name__)  # Create Flask app instance, __name__ tells Flask where t
 def home():
     return "Hello Flask! Welcome to my first web server!"  # This text displays in the browser
 
+@app.route('/bold')  # Decorator that maps URL '/' (home page) to this function
+def bold():
+    return "<h1>Flask! Welcome to my first web server!</h1>"  # This text displays in the browser
+
+@app.route('/about')  # Decorator that maps URL '/' (home page) to this function
+def about():
+    return "Hello Guys My name is Shubham Singh! Welcome to my first web server!"  # This text displays in the browser
+
 
 if __name__ == '__main__':
-    app.run(debug=True)  # debug=True enables auto-reload and detailed error messages
+    app.run(debug=True, port= 8000)  # debug=True enables auto-reload and detailed error messages
 
 
 # =============================================================================

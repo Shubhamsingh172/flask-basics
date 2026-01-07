@@ -7,7 +7,7 @@ How to Run:
 3. Try different URLs like /user/YourName or /post/123
 """
 
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request
 
 app = Flask(__name__)
 
@@ -54,6 +54,96 @@ def show_links():
         'post_2': url_for('show_post', post_id=2),
     }
     return render_template('links.html', links=links)
+
+@app.route('/product/<int:product_id>')
+def product_page(product_id):
+    products = {
+        1: {'name': 'Laptop', 'price': 999.99},
+        2: {'name': 'Smartphone', 'price': 499.99},
+        3: {'name': 'Tablet', 'price': 299.99},
+    }
+    product = products.get(product_id)
+    return render_template('product.html', product_id=product_id, product=product)
+
+@app.route('/category/<category_name>/product/<int:product_id>')
+def category_product(category_name, product_id):
+
+    # Step 1: Data structure (Category → Products)
+    data = {
+    'electronics': {
+        1: {'name': 'Mouse', 'price': 500},
+        2: {'name': 'Keyboard', 'price': 1200},
+        3: {'name': 'Headphones', 'price': 1800}
+    },
+
+    'books': {
+        1: {'name': 'Python Basics', 'price': 350},
+        2: {'name': 'Flask Guide', 'price': 450},
+        3: {'name': 'Data Structures', 'price': 600}
+    },
+
+    'cosmetics': {
+        1: {'name': 'Face Wash', 'price': 250},
+        2: {'name': 'Lipstick', 'price': 499},
+        3: {'name': 'Perfume', 'price': 1200}
+    },
+
+    'music': {
+        1: {'name': 'Guitar', 'price': 3500},
+        2: {'name': 'Keyboard Piano', 'price': 5200},
+        3: {'name': 'Headphones', 'price': 2000}
+    },
+
+    'clothes': {
+        1: {'name': 'T-Shirt', 'price': 699},
+        2: {'name': 'Jeans', 'price': 1499},
+        3: {'name': 'Jacket', 'price': 2999}
+    },
+
+    'cleaning': {
+        1: {'name': 'Floor Cleaner', 'price': 299},
+        2: {'name': 'Dish Wash', 'price': 199},
+        3: {'name': 'Detergent', 'price': 399}
+    }
+}
+    # Step 2: Check if category exists
+    category = data.get(category_name)
+
+    # Step 3: If category exists, check product
+    if category:
+        product = category.get(product_id)
+    else:
+        product = None
+
+    # Step 4: Send everything to template
+    return render_template(
+        'product_category.html',
+        category_name=category_name,
+        product=product,
+        product_id=product_id
+    )
+
+products = [
+    {'id': 1, 'name': 'Mouse', 'category': 'electronics', 'price': 500},
+    {'id': 2, 'name': 'Keyboard', 'category': 'electronics', 'price': 1200},
+    {'id': 3, 'name': 'Python Basics Book', 'category': 'books', 'price': 350},
+    {'id': 4, 'name': 'Flask Guide Book', 'category': 'books', 'price': 450},
+    {'id': 5, 'name': 'T-Shirt', 'category': 'clothes', 'price': 800},
+]
+
+@app.route('/search')
+def search():
+    query = request.args.get('q')
+
+    results = []
+
+    if query:   # 🔑 MOST IMPORTANT LINE
+        for product in products:
+            if query.lower() in product['name'].lower():
+                results.append(product)
+
+    return render_template('search.html', query=query, results=results)
+
 
 
 if __name__ == '__main__':

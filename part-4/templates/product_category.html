@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Category Product</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f8;
+            padding: 40px;
+        }
+        .box {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+
+{% if product %}
+    <h2>Category: {{ category_name }}</h2>
+    <h1>{{ product.name }}</h1>
+    <p><strong>Price:</strong> ₹{{ product.price }}</p>
+    <p><strong>Product ID:</strong> {{ product_id }}</p>
+{% else %}
+    <h1 class="error">Not Found ❌</h1>
+    <p>Product {{ product_id }} not found in "{{ category_name }}"</p>
+{% endif %}
+
+<a href="/">Go Home</a>
+
+</div>
+
+</body>
+</html>

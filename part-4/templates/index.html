@@ -32,18 +32,18 @@
             font-weight: bold;
         }
         nav a:hover { color: #2b6cb0; }
-        .route-demo {
+        .route-demo, .product-demo {
             background: #ebf8ff;
             border: 2px solid #90cdf4;
             border-radius: 8px;
             padding: 20px;
             margin: 15px 0;
         }
-        .route-demo h3 {
+        .route-demo h3 .product-demo h3{
             margin-top: 0;
             color: #2b6cb0;
         }
-        .route-demo a {
+        .route-demo a .product-demo a {
             display: inline-block;
             margin: 5px 10px 5px 0;
             padding: 8px 16px;
@@ -101,6 +101,7 @@
             <a href="/user/Alice">Alice</a>
             <a href="/user/Bob">Bob</a>
             <a href="/user/Charlie">Charlie</a>
+            <a href="/user/Shubham">Shubham</a>
         </div>
 
         <!-- Post Demo -->
@@ -126,6 +127,16 @@
             <p><strong>Try it:</strong></p>
             <a href="/user/Alice/post/1">Alice's Post 1</a>
             <a href="/user/Bob/post/2">Bob's Post 2</a>
+        </div>
+        
+        <!--Product Parameters demo-->
+        <div class="product-demo">
+            <h3>4. Products List</h3>
+            <p>Route: <code>/product/&lt;productname&gt;/product/&lt;int:product_id&gt;</code></p>
+            <p><strong>Try it:</strong></p>
+            <a href="/product/1">Product 1</a>
+            <a href="/product/2">Product 2</a>
+            <a href="/product/3">Product 3</a>
         </div>
 
         <div class="try-it">
