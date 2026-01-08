@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My To-Do App</title>
+</head>
+<body>
+    <h1>My Tasks</h1>
+
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <b>{{ task.title }}</b>
+                - {{ task.status }}
+                (Priority: {{ task.priority }})
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

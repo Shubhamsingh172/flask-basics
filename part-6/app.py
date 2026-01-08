@@ -22,6 +22,11 @@ TASKS = [
 
 # Your code here...
 
+@app.route('/')
+def home():
+    return render_template('index.html', tasks=TASKS)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
